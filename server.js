@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
+const loadEnv = require('./config/load_env');
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
@@ -19,7 +21,7 @@ const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true }) // Let us remove that nasty deprecation warrning :)
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
@@ -44,6 +46,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const port = process.env.PORT || 5000;
+const port = loadEnv.port || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
