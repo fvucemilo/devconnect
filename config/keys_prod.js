@@ -1,6 +1,4 @@
-const loadEnv = require('./load_env');
-
 module.exports = {
-  mongoURI: loadEnv.mongoUriPro,
-  secretOrKey: loadEnv.keyOrSecretPro
+  mongoURI: process.env.MONGO_URI,
+  secretOrKey: process.env.SECRET_OR_KEY
 };

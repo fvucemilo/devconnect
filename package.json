@@ -5,13 +5,22 @@
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "cross-env NODE_ENV=production&&node server.js",
-    "server": "cross-env NODE_ENV=development&&nodemon server.js",
+    "start": "node server.js",
+    "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Filip Vučemilović-Grgić",
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "client",
+      "node_modules"
+    ],
+    "verbose": true
+  },
+  "author": "TIM5-G1",
   "repository": {
     "type": "git",
     "url": "https://github.com/fvucemilo/devconnect.git"
@@ -32,6 +41,8 @@
     "validator": "^9.4.1"
   },
   "devDependencies": {
-    "nodemon": "^1.17.3"
+    "jest": "^25.1.0",
+    "nodemon": "^1.17.3",
+    "supertest": "^4.0.2"
   }
 }

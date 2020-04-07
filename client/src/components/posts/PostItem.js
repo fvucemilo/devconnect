@@ -28,13 +28,13 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth, showActions } = this.props;
+    const { post, auth, showActions } = this.props;    
 
     return (
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-            <a href="profile.html">
+            <a href="/profiles">
               <img
                 className="rounded-circle d-none d-md-block"
                 src={post.avatar}
